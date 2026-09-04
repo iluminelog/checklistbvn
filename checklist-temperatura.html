@@ -9,6 +9,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
+    --bg:#F4F5F7;
+    --panel:#FFFFFF;
+    --panel-alt:#EEF0F3;
+    --line:#D6DAE0;
+    --text:#1E2A36;
+    --muted:#5F6D78;
+    --primary:#1B6B3A;
+    --primary-dark:#14532B;
+    --accent:#E8751A;
+    --accent-light:#F59E4B;
+    --congelado:#0E8CB2;
+    --resfriado:#3A7BBF;
+    --seco:#B8861E;
+    --ok:#16A34A;
+    --alerta:#DC2626;
+    --radius:14px;
+    --header-bg:#1B6B3A;
+    --header-text:#FFFFFF;
+    --btn-bg:#E8751A;
+    --btn-text:#FFFFFF;
+    --focus:#E8751A;
+  }
+  body.dark{
     --bg:#0B141C;
     --panel:#141F29;
     --panel-alt:#1B2833;
@@ -20,29 +43,35 @@
     --seco:#C9A23B;
     --ok:#4FCE8A;
     --alerta:#E8604C;
-    --radius:14px;
+    --header-bg:#141F29;
+    --header-text:#E8EEF2;
+    --btn-bg:#49C9E8;
+    --btn-text:#06212A;
+    --focus:#49C9E8;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
-    background:
-      radial-gradient(1200px 600px at 50% -10%, #182430 0%, var(--bg) 55%);
+    background:var(--bg);
     color:var(--text);
     font-family:'Inter',sans-serif;
     min-height:100vh;
     padding-bottom:40px;
+    transition:background .3s, color .3s;
   }
   .wrap{max-width:480px;margin:0 auto;padding:0 18px;}
 
   header.top{
     padding:22px 18px 14px;
     display:flex;align-items:center;gap:12px;
+    background:var(--header-bg);
     border-bottom:1px solid var(--line);
+    margin:0 -18px;padding-left:18px;padding-right:18px;
   }
   .ice-mark{
     width:38px;height:38px;border-radius:10px;
-    background:linear-gradient(155deg,#1B2833,#0F1A22);
-    border:1px solid var(--line);
+    background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.2);
     display:flex;align-items:center;justify-content:center;
     flex-shrink:0;
   }
@@ -50,11 +79,11 @@
   header.top h1{
     font-family:'Barlow Condensed',sans-serif;
     font-weight:700;font-size:19px;letter-spacing:.02em;
-    margin:0;line-height:1.15;
+    margin:0;line-height:1.15;color:var(--header-text);
   }
   header.top span.sub{
     display:block;font-family:'Inter';font-weight:500;font-size:11.5px;
-    color:var(--muted);letter-spacing:.03em;text-transform:uppercase;margin-top:2px;
+    color:rgba(255,255,255,.7);letter-spacing:.03em;text-transform:uppercase;margin-top:2px;
   }
 
   .device-strip{
@@ -65,7 +94,7 @@
   }
   .device-strip b{color:var(--text);font-weight:600;}
   .device-strip button{
-    background:none;border:none;color:var(--congelado);font-family:'Inter';
+    background:none;border:none;color:var(--accent);font-family:'Inter';
     font-size:12px;font-weight:600;cursor:pointer;padding:4px 6px;
   }
 
@@ -90,7 +119,7 @@
     color:var(--text);border-radius:10px;padding:12px 13px;font-size:15.5px;
     font-family:'Inter';appearance:none;-webkit-appearance:none;
   }
-  select:focus, input:focus{outline:2px solid var(--congelado);outline-offset:0;}
+  select:focus, input:focus{outline:2px solid var(--focus);outline-offset:0;}
   select{
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9'><path d='M1 1l6 6 6-6' stroke='%237E93A0' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>");
     background-repeat:no-repeat;background-position:right 14px center;padding-right:34px;
@@ -163,7 +192,7 @@
 
   button.submit{
     width:100%;margin-top:20px;padding:15px;border:none;border-radius:12px;
-    background:var(--congelado);color:#06212A;font-family:'Barlow Condensed';
+    background:var(--btn-bg);color:var(--btn-text);font-family:'Barlow Condensed';
     font-weight:700;font-size:17px;letter-spacing:.03em;text-transform:uppercase;
     cursor:pointer;transition:opacity .15s;
   }
@@ -202,7 +231,7 @@
     background:var(--panel-alt);color:var(--muted);font-family:'Barlow Condensed';
     font-weight:700;font-size:13.5px;letter-spacing:.03em;text-transform:uppercase;cursor:pointer;
   }
-  .nav-tabs button.active{background:var(--congelado);color:#06212A;border-color:var(--congelado);}
+  .nav-tabs button.active{background:var(--btn-bg);color:var(--btn-text);border-color:var(--btn-bg);}
 
   .retificacao-banner{
     background:rgba(201,162,59,.14);border:1px solid var(--seco);color:var(--seco);
@@ -217,7 +246,7 @@
   .busca-row{display:flex;gap:8px;}
   .busca-row input{flex:1;}
   .busca-row button{
-    background:var(--congelado);color:#06212A;border:none;border-radius:10px;
+    background:var(--btn-bg);color:var(--btn-text);border:none;border-radius:10px;
     padding:0 18px;font-family:'Barlow Condensed';font-weight:700;font-size:14px;
     text-transform:uppercase;cursor:pointer;
   }
@@ -256,6 +285,53 @@
   .lista-tabela tr{cursor:pointer;}
   .lista-tabela tr:hover td{background:var(--panel-alt);}
   .lista-tabela tr.alerta td{color:var(--alerta);}
+
+  /* ---------- Crop Modal ---------- */
+  .crop-overlay{
+    position:fixed;top:0;left:0;width:100%;height:100%;
+    background:rgba(0,0,0,.95);z-index:9999;display:none;
+    flex-direction:column;
+  }
+  .crop-overlay.visible{display:flex;}
+  .crop-header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 16px;flex-shrink:0;
+  }
+  .crop-header button{
+    padding:8px 18px;border-radius:8px;font-family:'Barlow Condensed';
+    font-weight:700;font-size:14px;text-transform:uppercase;cursor:pointer;border:none;
+  }
+  .crop-cancel{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)!important;}
+  .crop-confirm{background:var(--accent);color:#fff;}
+  .crop-fullimg{background:transparent;color:var(--accent-light,#F59E4B);font-size:12px;}
+  .crop-canvas-wrap{
+    flex:1;display:flex;align-items:center;justify-content:center;
+    overflow:hidden;position:relative;touch-action:none;
+  }
+  .crop-canvas-wrap canvas{max-width:100%;max-height:100%;display:block;}
+  .crop-hint{
+    text-align:center;color:rgba(255,255,255,.6);font-size:12px;
+    padding:8px 16px 14px;flex-shrink:0;
+  }
+
+  /* ---------- Offline Banner ---------- */
+  .offline-banner{
+    display:none;margin-top:10px;padding:10px 14px;border-radius:10px;
+    background:rgba(232,117,26,.12);border:1px solid var(--accent);
+    color:var(--accent);font-size:12.5px;
+    align-items:center;justify-content:space-between;gap:8px;
+  }
+  .offline-banner.visible{display:flex;}
+  .offline-banner button{
+    background:var(--accent);color:#fff;border:none;border-radius:8px;
+    padding:6px 14px;font-family:'Barlow Condensed';font-weight:700;
+    font-size:13px;cursor:pointer;flex-shrink:0;text-transform:uppercase;
+  }
+  .pending-badge{
+    display:inline-block;background:var(--accent);color:#fff;
+    border-radius:10px;padding:1px 7px;font-size:11px;font-weight:700;
+    margin-left:6px;vertical-align:middle;
+  }
 </style>
 </head>
 <body>
@@ -264,7 +340,7 @@
   <header class="top">
     <div class="ice-mark">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2v20M4 6l16 12M20 6L4 18M2 12h20" stroke="#49C9E8" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M12 2v20M4 6l16 12M20 6L4 18M2 12h20" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/>
       </svg>
     </div>
     <div>
@@ -275,7 +351,16 @@
 
   <div class="device-strip" id="deviceStrip">
     <span>Usuário: <b id="deviceLabel">—</b></span>
-    <button id="btnTrocarDispositivo">Sair</button>
+    <span style="display:flex;gap:6px;align-items:center;">
+      <button id="btnToggleTheme" style="background:none;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:4px 8px;font-size:13px;cursor:pointer;" title="Alternar tema">🌙</button>
+      <button id="btnTrocarDispositivo">Sair</button>
+    </span>
+  </div>
+
+
+  <div class="offline-banner" id="offlineBanner">
+    <span>📡 <span id="pendingCount">0</span> registro(s) pendente(s) de envio</span>
+    <button id="btnSync">Sincronizar</button>
   </div>
 
   <!-- AUTH SCREEN (bloqueia o formulário até validar usuário/senha) -->
@@ -366,7 +451,7 @@
       <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 6" stroke="#4FCE8A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
     <h2>Registro salvo</h2>
-    <p>Os dados foram gravados na planilha e as fotos no Drive.</p>
+    <p id="successMsg">Os dados foram gravados na planilha e as fotos no Drive.</p>
     <div class="success-detail" id="successDetail"></div>
     <div class="acoes-registro">
       <button class="btn-pdf" id="btnPdfSucesso">Gerar PDF</button>
@@ -698,12 +783,10 @@ document.getElementById('temperatura').addEventListener('input', avaliarTemperat
 document.getElementById('addPhotoBtn').addEventListener('click', () => document.getElementById('fileInput').click());
 document.getElementById('fileInput').addEventListener('change', async (e) => {
   const arquivos = Array.from(e.target.files || []);
-  for (const file of arquivos){
-    const comprimida = await comprimirImagem(file, 1280, 0.72);
-    fotos.push(comprimida);
-  }
   e.target.value = '';
-  renderPhotoGrid();
+  for (const file of arquivos){
+    await abrirCropModal(file);
+  }
 });
 
 function comprimirImagem(file, maxLado, qualidade){
@@ -862,14 +945,36 @@ document.getElementById('btnEnviar').addEventListener('click', async () => {
     });
     cancelarRetificacao();
   } catch (err){
-    msg.textContent = 'Erro ao enviar: ' + err.message;
-    msg.style.display = 'block';
-    btn.disabled = false; btn.classList.remove('sending'); btn.textContent = modoRetificacao ? 'Salvar Retificação' : 'Registrar Check List';
+    // Se erro de rede, salva na fila offline
+    if (err.message === 'Failed to fetch' || err.name === 'TypeError' || !navigator.onLine) {
+      const meta = {
+        unidade, armazem, camara, tipo, temperatura,
+        dispositivoNome, dataHora: new Date().toISOString()
+      };
+      addToOfflineQueue(payload, meta);
+      mostrarSucesso({
+        idRegistro: '(PENDENTE)', unidade, armazem, camara, tipo, temperatura,
+        status: status || 'PENDENTE', dispositivoNome, dispositivoPin: getPin(),
+        idRetificacaoDe: modoRetificacao || '',
+        fotosDataUrl: fotos.map(f => f.dataUrl), dataHora: new Date().toISOString()
+      });
+      cancelarRetificacao();
+    } else {
+      msg.textContent = 'Erro ao enviar: ' + err.message;
+      msg.style.display = 'block';
+      btn.disabled = false; btn.classList.remove('sending'); btn.textContent = modoRetificacao ? 'Salvar Retificação' : 'Registrar Check List';
+    }
   }
 });
 
 function mostrarSucesso(d){
   ultimoRegistro = d;
+  const msgEl = document.getElementById('successMsg');
+  if (d.idRegistro === '(PENDENTE)') {
+    msgEl.innerHTML = '📡 <b>Sem conexão</b> — registro salvo localmente. Será enviado ao sincronizar.';
+  } else {
+    msgEl.textContent = 'Os dados foram gravados na planilha e as fotos no Drive.';
+  }
   document.getElementById('formScreen').style.display = 'none';
   document.getElementById('navTabs').style.display = 'none';
   document.getElementById('successScreen').style.display = 'block';
@@ -1138,13 +1243,293 @@ function gerarPDF(registro, fotosDataUrl){
   doc.save(`checklist_temperatura_${registro.idRegistro}.pdf`);
 }
 
+
+/* ---------- Crop Modal ---------- */
+let cropResolve = null;
+let cropImg = null;
+let cropRect = null;  // {x, y, w, h} in image coordinates
+let cropDragging = false;
+let cropStartPt = null;
+let cropScale = 1;
+let cropOffsetX = 0, cropOffsetY = 0;
+
+function abrirCropModal(file){
+  return new Promise((resolve) => {
+    cropResolve = resolve;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      cropImg = new Image();
+      cropImg.onload = () => {
+        cropRect = null;
+        cropDragging = false;
+        desenharCropCanvas();
+        document.getElementById('cropOverlay').classList.add('visible');
+      };
+      cropImg.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function desenharCropCanvas(){
+  const canvas = document.getElementById('cropCanvas');
+  const wrap = document.getElementById('cropCanvasWrap');
+  const wrapW = wrap.clientWidth;
+  const wrapH = wrap.clientHeight;
+
+  // Scale image to fit
+  cropScale = Math.min(wrapW / cropImg.width, wrapH / cropImg.height, 1);
+  const drawW = Math.floor(cropImg.width * cropScale);
+  const drawH = Math.floor(cropImg.height * cropScale);
+  canvas.width = drawW;
+  canvas.height = drawH;
+  cropOffsetX = (wrapW - drawW) / 2;
+  cropOffsetY = (wrapH - drawH) / 2;
+
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, drawW, drawH);
+  ctx.drawImage(cropImg, 0, 0, drawW, drawH);
+
+  if (cropRect) {
+    // Darken outside crop area
+    ctx.fillStyle = 'rgba(0,0,0,0.55)';
+    const r = {
+      x: cropRect.x * cropScale,
+      y: cropRect.y * cropScale,
+      w: cropRect.w * cropScale,
+      h: cropRect.h * cropScale
+    };
+    ctx.fillRect(0, 0, drawW, r.y);
+    ctx.fillRect(0, r.y, r.x, r.h);
+    ctx.fillRect(r.x + r.w, r.y, drawW - r.x - r.w, r.h);
+    ctx.fillRect(0, r.y + r.h, drawW, drawH - r.y - r.h);
+
+    // Crop border
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(r.x, r.y, r.w, r.h);
+
+    // Corner handles
+    const hs = 12;
+    ctx.fillStyle = '#fff';
+    [[r.x, r.y],[r.x+r.w, r.y],[r.x, r.y+r.h],[r.x+r.w, r.y+r.h]].forEach(([cx,cy]) => {
+      ctx.fillRect(cx - hs/2, cy - hs/2, hs, hs);
+    });
+  }
+}
+
+function getCanvasPoint(e){
+  const canvas = document.getElementById('cropCanvas');
+  const rect = canvas.getBoundingClientRect();
+  const touch = e.touches ? e.touches[0] : e;
+  return {
+    x: (touch.clientX - rect.left) / cropScale,
+    y: (touch.clientY - rect.top) / cropScale
+  };
+}
+
+(function setupCropEvents(){
+  const canvas = document.getElementById('cropCanvas');
+
+  function onStart(e){
+    e.preventDefault();
+    cropDragging = true;
+    cropStartPt = getCanvasPoint(e);
+    cropRect = { x: cropStartPt.x, y: cropStartPt.y, w: 0, h: 0 };
+  }
+  function onMove(e){
+    if (!cropDragging || !cropStartPt) return;
+    e.preventDefault();
+    const pt = getCanvasPoint(e);
+    cropRect = {
+      x: Math.max(0, Math.min(cropStartPt.x, pt.x)),
+      y: Math.max(0, Math.min(cropStartPt.y, pt.y)),
+      w: Math.min(Math.abs(pt.x - cropStartPt.x), cropImg.width - Math.min(cropStartPt.x, pt.x)),
+      h: Math.min(Math.abs(pt.y - cropStartPt.y), cropImg.height - Math.min(cropStartPt.y, pt.y))
+    };
+    desenharCropCanvas();
+  }
+  function onEnd(e){
+    cropDragging = false;
+    // If crop area too small, reset
+    if (cropRect && (cropRect.w < 20 || cropRect.h < 20)) cropRect = null;
+    desenharCropCanvas();
+  }
+
+  canvas.addEventListener('mousedown', onStart);
+  canvas.addEventListener('mousemove', onMove);
+  canvas.addEventListener('mouseup', onEnd);
+  canvas.addEventListener('touchstart', onStart, {passive:false});
+  canvas.addEventListener('touchmove', onMove, {passive:false});
+  canvas.addEventListener('touchend', onEnd);
+})();
+
+function fecharCropModal(resultado){
+  document.getElementById('cropOverlay').classList.remove('visible');
+  if (cropResolve) {
+    cropResolve(resultado);
+    cropResolve = null;
+  }
+}
+
+document.getElementById('cropCancel').addEventListener('click', () => fecharCropModal(null));
+
+document.getElementById('cropUseFull').addEventListener('click', async () => {
+  if (!cropImg) { fecharCropModal(null); return; }
+  const comprimida = await comprimirImagemFromImg(cropImg, cropImg.width, cropImg.height, 1280, 0.72);
+  fotos.push(comprimida);
+  renderPhotoGrid();
+  fecharCropModal('full');
+});
+
+document.getElementById('cropConfirm').addEventListener('click', async () => {
+  if (!cropImg) { fecharCropModal(null); return; }
+  let sx = 0, sy = 0, sw = cropImg.width, sh = cropImg.height;
+  if (cropRect && cropRect.w >= 20 && cropRect.h >= 20) {
+    sx = Math.round(cropRect.x);
+    sy = Math.round(cropRect.y);
+    sw = Math.round(cropRect.w);
+    sh = Math.round(cropRect.h);
+  }
+  const comprimida = await comprimirImagemFromImg(cropImg, sw, sh, 1280, 0.72, sx, sy);
+  fotos.push(comprimida);
+  renderPhotoGrid();
+  fecharCropModal('cropped');
+});
+
+function comprimirImagemFromImg(img, srcW, srcH, maxLado, qualidade, sx, sy){
+  sx = sx || 0; sy = sy || 0;
+  return new Promise((resolve) => {
+    let width = srcW, height = srcH;
+    if (width > height && width > maxLado){ height = height * (maxLado / width); width = maxLado; }
+    else if (height > maxLado){ width = width * (maxLado / height); height = maxLado; }
+    width = Math.round(width); height = Math.round(height);
+    const canvas = document.createElement('canvas');
+    canvas.width = width; canvas.height = height;
+    canvas.getContext('2d').drawImage(img, sx, sy, srcW, srcH, 0, 0, width, height);
+    const dataUrl = canvas.toDataURL('image/jpeg', qualidade);
+    resolve({ dataUrl, base64: dataUrl.split(',')[1], mimeType: 'image/jpeg' });
+  });
+}
+
+/* ---------- Fila Offline (localStorage) ---------- */
+const OFFLINE_QUEUE_KEY = 'checklistTempOfflineQueue';
+
+function getOfflineQueue(){
+  try {
+    return JSON.parse(localStorage.getItem(OFFLINE_QUEUE_KEY) || '[]');
+  } catch(e){ return []; }
+}
+function saveOfflineQueue(queue){
+  localStorage.setItem(OFFLINE_QUEUE_KEY, JSON.stringify(queue));
+}
+function addToOfflineQueue(payload, meta){
+  const queue = getOfflineQueue();
+  queue.push({ payload, meta, timestamp: new Date().toISOString() });
+  saveOfflineQueue(queue);
+  atualizarBannerOffline();
+}
+function removeFromOfflineQueue(index){
+  const queue = getOfflineQueue();
+  queue.splice(index, 1);
+  saveOfflineQueue(queue);
+  atualizarBannerOffline();
+}
+
+function atualizarBannerOffline(){
+  const queue = getOfflineQueue();
+  const banner = document.getElementById('offlineBanner');
+  const count = document.getElementById('pendingCount');
+  if (queue.length > 0){
+    banner.classList.add('visible');
+    count.textContent = queue.length;
+  } else {
+    banner.classList.remove('visible');
+  }
+}
+
+async function sincronizarPendentes(){
+  const queue = getOfflineQueue();
+  if (!queue.length){ alert('Nenhum registro pendente.'); return; }
+
+  const btn = document.getElementById('btnSync');
+  btn.disabled = true; btn.textContent = 'Enviando...';
+  let enviados = 0, erros = 0;
+
+  // Process from end to start so index removal is safe
+  for (let i = 0; i < queue.length; ){
+    const item = queue[i];
+    try {
+      const res = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify(item.payload)
+      });
+      const data = await res.json();
+      if (data.ok){
+        queue.splice(i, 1);
+        enviados++;
+      } else {
+        erros++;
+        i++;
+      }
+    } catch(err){
+      erros++;
+      i++;
+    }
+  }
+  saveOfflineQueue(queue);
+  atualizarBannerOffline();
+  btn.disabled = false; btn.textContent = 'Sincronizar';
+
+  if (erros > 0){
+    alert('Enviados: ' + enviados + '\nFalhas: ' + erros + ' (ainda na fila)');
+  } else if (enviados > 0){
+    alert('Todos os ' + enviados + ' registro(s) pendentes foram enviados com sucesso!');
+  }
+}
+
+document.getElementById('btnSync').addEventListener('click', sincronizarPendentes);
+
 /* ---------- Boot ---------- */
 (async function init(){
   await carregarConfig();
   renderSelects();
   renderPhotoGrid();
+  atualizarBannerOffline();
   await initDevice();
+
+  // Theme toggle
+  const savedTheme = localStorage.getItem('checklistTheme');
+  if (savedTheme === 'dark') document.body.classList.add('dark');
+  document.getElementById('btnToggleTheme').textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+  document.getElementById('btnToggleTheme').addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    localStorage.setItem('checklistTheme', isDark ? 'dark' : 'light');
+    document.getElementById('btnToggleTheme').textContent = isDark ? '☀️' : '🌙';
+  });
+
+  // Auto-sync when connectivity returns
+  window.addEventListener('online', () => {
+    const queue = getOfflineQueue();
+    if (queue.length > 0 && getPin()) {
+      atualizarBannerOffline();
+    }
+  });
 })();
 </script>
+
+<!-- CROP MODAL -->
+<div class="crop-overlay" id="cropOverlay">
+  <div class="crop-header">
+    <button class="crop-cancel" id="cropCancel">Cancelar</button>
+    <button class="crop-fullimg" id="cropUseFull">Usar toda</button>
+    <button class="crop-confirm" id="cropConfirm">Recortar</button>
+  </div>
+  <div class="crop-canvas-wrap" id="cropCanvasWrap">
+    <canvas id="cropCanvas"></canvas>
+  </div>
+  <div class="crop-hint">Toque e arraste para selecionar a área de recorte</div>
+</div>
 </body>
 </html>
